@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bio Link Zymzz</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Font Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --neon-cyan: #00DDFF;
+            --neon-pink: #FF00FF;
+            --verified-blue: #1DA1F2;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #050505;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(0, 221, 255, 0.4), transparent 50%),
+                linear-gradient(180deg, #050505 0%, #0a1f24 100%);
+            background-attachment: fixed;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .font-cyber {
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 2px;
+        }
+
+        /* --- STYLE TOMBOL --- */
+        .glitch-btn {
+            position: relative;
+            background: rgba(0, 20, 30, 0.6);
+            border: 1px solid var(--neon-cyan);
+            box-shadow: 0 0 5px var(--neon-cyan);
+            overflow: hidden;
+            transition: all 0.2s ease;
+            z-index: 1;
+        }
+
+        .glitch-btn:hover {
+            background: linear-gradient(90deg, #00DDFF, #ff00dd, #ddff00, #00DDFF);
+            background-size: 300% 100%;
+            animation: rainbow-move 2s linear infinite, glitch-anim 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
+            border-color: transparent;
+            color: #000;
+            box-shadow: 
+                -2px -2px 0px var(--neon-pink), 
+                2px 2px 0px var(--neon-cyan);
+            font-weight: bold;
+            transform: scale(1.02);
+        }
+
+        /* --- PROFILE EFFECT --- */
+        .profile-img {
+            transition: filter 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .profile-container:hover .profile-img {
+            filter: contrast(1.3) hue-rotate(90deg) brightness(1.2);
+            border-color: var(--neon-pink);
+            box-shadow: 0 0 25px var(--neon-pink);
+        }
+
+        .profile-container:hover .profile-glow {
+            background-color: var(--neon-pink);
+            opacity: 0.8;
+        }
+
+        /* --- NAME & VERIFIED TICK EFFECT --- */
+        .name-interactive {
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        /* Saat di-hover: Hanya Nama yang berubah Pink */
+        .name-interactive:hover {
+            color: var(--neon-pink);
+            text-shadow: 0 0 20px var(--neon-pink), 0 0 40px var(--neon-pink);
+            letter-spacing: 3px;
+            transform: scale(1.05);
+        }
+
+        /* Warna Centang Biru (TETAP BIRU) */
+        .verified-badge {
+            color: var(--verified-blue);
+            font-size: 0.9em;
+            transition: none;
+            filter: none;
+            text-shadow: none;
+        }
+
+        /* --- ANIMASI LAIN --- */
+        @keyframes rainbow-move {
+            0% { background-position: 100% 0; }
+            100% { background-position: 0 0; }
+        }
+
+        @keyframes glitch-anim {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+
+        .scanline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: rgba(0, 221, 255, 0.3);
+            opacity: 0.4;
+            animation: scan 6s linear infinite;
+            pointer-events: none;
+            z-index: 50;
+        }
+
+        @keyframes scan {
+            0% { top: -10%; }
+            100% { top: 110%; }
+        }
+
+        .text-neon {
+            text-shadow: 0 0 10px var(--neon-cyan);
+            transition: text-shadow 0.3s ease;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex justify-center items-start pt-12 pb-10">
+
+    <div class="scanline"></div>
+
+    <div class="w-full max-w-md px-6 relative z-10">
+        
+        <!-- 1. FOTO PROFILE & DESKRIPSI -->
+        <div class="flex flex-col items-center mb-10 text-center">
+            
+            <!-- Container Foto -->
+            <div class="profile-container relative group mb-4 cursor-pointer">
+                <!-- Efek Glow Belakang -->
+                <div class="profile-glow absolute -inset-1 bg-[#00DDFF] rounded-full blur opacity-40 transition duration-500"></div>
+                
+                <!-- Foto Profile -->
+                <img 
+                    src="https://files.catbox.moe/3p8p3p.jpg" 
+                    alt="Foto Profil Zymzz" 
+                    class="profile-img relative w-28 h-28 rounded-full object-cover border-2 border-[#00DDFF] shadow-[0_0_15px_#00DDFF]"
+                >
+            </div>
+
+            <!-- Nama (DENGAN CENTANG BIRU TETAP BIRU) -->
+            <div class="flex justify-center w-full">
+                <h1 class="name-interactive font-cyber text-2xl font-bold text-white tracking-widest text-neon">
+                    Zymzz
+                    <i class="fas fa-check-circle verified-badge" title="Verified Creator"></i>
+                </h1>
+            </div>
+            
+            <!-- Deskripsi -->
+            <p class="mt-3 text-sm text-cyan-100 font-light tracking-wide border-b border-[#00DDFF]/30 pb-2">
+                &lt; gpp kok /&gt;
+            </p>
+        </div>
+
+        <!-- 2. DAFTAR LINK -->
+        <div class="flex flex-col space-y-5">
+
+            <!-- Link: AM Prem 10k -->
+            <a href="https://wa.me/6281234567890?text=Halo%20min,order%20am%20prem" target="_blank" class="glitch-btn p-4 rounded-sm flex items-center justify-between group">
+                <div class="flex items-center space-x-4">
+                    <i class="fas fa-bolt text-xl w-8 text-center group-hover:animate-spin"></i>
+                    <span class="font-bold tracking-wide">AM PREM 10K</span>
+                </div>
+                
+                <div class="flex items-center space-x-3">
+                    <!-- Badge Promo dengan Huruf Kecil -->
+                    <span class="bg-[#00DDFF] text-black text-[10px] font-bold px-2 py-1 rounded-sm border border-white group-hover:bg-black group-hover:text-[#00DDFF] transition-colors">
+                        🔥PROMO
+                    </span>
+                    <i class="fas fa-angle-right text-lg group-hover:translate-x-1 transition-transform duration-200"></i>
+                </div>
+            </a>
+
+            <!-- 3. GRUP / FOLDER LINK -->
+            <div class="w-full">
+                <!-- Tombol Pemicu Grup -->
+                <button onclick="toggleGroup('group1')" id="btn-group1" class="w-full glitch-btn p-4 rounded-sm flex items-center justify-between">
+                    <div class="flex items-center space-x-4">
+                        <i class="fas fa-layer-group text-xl w-8 text-center"></i>
+                        <span class="font-bold tracking-wide">LINK LAINNYA</span>
+                    </div>
+                    <i id="icon-group1" class="fas fa-plus transition-transform duration-300"></i>
+                </button>
+
+                <!-- Isi Grup -->
+                <div id="group1" class="hidden flex-col space-y-3 mt-4 ml-2 border-l-2 border-[#00DDFF]/30 pl-4 transition-all">
+                    
+                    <!-- Link 1 -->
+                    <a href="#" class="block bg-white/5 border border-white/10 p-3 hover:bg-[#00DDFF] hover:text-black transition-colors duration-300 rounded-sm">
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm font-semibold">Coming Soon</span>
+                        </div>
+                    </a>
+
+                    <!-- Link 2 -->
+                    <a href="#" class="block bg-white/5 border border-white/10 p-3 hover:bg-[#FF00FF] hover:text-white transition-colors duration-300 rounded-sm">
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm font-semibold">Coming Soon</span>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer (Huruf Kecil Diaktifkan) -->
+        <footer class="mt-16 text-center">
+            <!-- Menghapus class 'uppercase' agar huruf kecil terbaca -->
+            <p class="text-[10px] text-[#00DDFF] tracking-[0.2em] opacity-70">
+                Powered by Zymzz /// 2026
+            </p>
+        </footer>
+
+    </div>
+
+    <script>
+        function toggleGroup(id) {
+            const content = document.getElementById(id);
+            const icon = document.getElementById('icon-' + id);
+            
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                content.classList.add('flex');
+                icon.classList.remove('fa-plus');
+                icon.classList.add('fa-minus');
+            } else {
+                content.classList.add('hidden');
+                content.classList.remove('flex');
+                icon.classList.remove('fa-minus');
+                icon.classList.add('fa-plus');
+            }
+        }
+    </script>
+</body>
+</html>
